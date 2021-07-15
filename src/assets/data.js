@@ -3,6 +3,7 @@ export const data = [
     id: 1,
     name: 'Jack',
     breed: 'Abyssinian cat',
+    age: '4 years',
     imageUri:
       'https://www.askideas.com/media/17/Abyssinian-Cat-With-Green-Eyes.jpg',
     description:
@@ -12,6 +13,7 @@ export const data = [
     id: 2,
     name: 'John',
     breed: 'Devon Rex',
+    age: '1 month',
     imageUri:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Devon_Rex_male.jpg/274px-Devon_Rex_male.jpg',
     description:
@@ -21,6 +23,7 @@ export const data = [
     id: 3,
     name: 'Kyle',
     breed: 'Persian cat',
+    age: '10 years',
     imageUri:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ2EzWrOaB3-1QQl-2tr4z3RUXXxg70lzO_odbJUbD97A68crRFoSYL4jQxYBqSIU_huQ&usqp=CAU',
     description:
@@ -30,6 +33,7 @@ export const data = [
     id: 4,
     name: 'Jill',
     breed: 'Maine Coon',
+    age: '7 month',
     imageUri:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz0XzQ97HvRGsqXpHe05VOSYzJYRHsBtrpkw&usqp=CAU',
     description:

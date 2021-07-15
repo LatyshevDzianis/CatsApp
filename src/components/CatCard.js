@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 
 const CatCard = ({ name, breed, imageUri, description, onPress }) => {
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.headerSection}>
@@ -11,7 +15,7 @@ const CatCard = ({ name, breed, imageUri, description, onPress }) => {
       </View>
       <View style={styles.imageSection}>
         <FastImage
-          style={{ width: '90%', height: 150 }}
+          style={styles.image}
           source={{
             uri: imageUri,
             priority: FastImage.priority.normal,
@@ -28,30 +32,35 @@ const CatCard = ({ name, breed, imageUri, description, onPress }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: '#487eb0',
-    padding: 10,
-  },
-  text: {
-    fontSize: 16,
-  },
-  boldText: {
-    fontWeight: 'bold',
-  },
-  headerSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#487eb0',
-    paddingBottom: 5,
-  },
-  imageSection: {
-    alignItems: 'center',
-    padding: 15,
-  },
-});
+const createStyles = theme =>
+  StyleSheet.create({
+    container: {
+      borderWidth: 1,
+      borderRadius: 10,
+      borderColor: theme.colors.almostBlue,
+      padding: 10,
+    },
+    text: {
+      fontSize: 16,
+    },
+    boldText: {
+      fontWeight: 'bold',
+    },
+    headerSection: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      borderBottomWidth: 1,
+      borderBottomColor: theme.colors.almostBlue,
+      paddingBottom: 5,
+    },
+    imageSection: {
+      alignItems: 'center',
+      padding: 15,
+    },
+    image: {
+      width: '90%',
+      height: 150,
+    },
+  });
 
 export default CatCard;
