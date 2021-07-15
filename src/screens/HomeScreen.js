@@ -1,21 +1,39 @@
-import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, FlatList, TextInput } from 'react-native';
 
 import CatCard from '../components/CatCard';
 
 import { data } from '../assets/data';
 
+const contains = ({ name, breed, description }, query) => {
+  if (
+    name.toLowerCase().includes(query) ||
+    breed.toLowerCase().includes(query) ||
+    description.toLowerCase().includes(query)
+  ) {
+    return true;
+  }
+  return false;
+};
+
 const HomeScreen = ({ navigation }) => {
+  const [cats, setCats] = useState(data);
+
   const onCardPress = item => {
     navigation.push('CatDetails', {
       cat: item,
     });
   };
 
+  const handleChangeText = text => {
+    const newCats = data.filter(cat => contains(cat, text));
+    setCats(newCats);
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={cats}
         renderItem={({ item }) => (
           <View style={styles.cardContainer}>
             <CatCard
@@ -28,6 +46,13 @@ const HomeScreen = ({ navigation }) => {
           </View>
         )}
         keyExtractor={({ id }) => id}
+        extraData={cats}
+      />
+      <TextInput
+        textAlign="center"
+        placeholder="Type here to search..."
+        onChangeText={handleChangeText}
+        clearButtonMode="always"
       />
     </View>
   );
