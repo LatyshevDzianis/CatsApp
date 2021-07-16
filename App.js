@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import RNBootSplash from 'react-native-bootsplash';
 
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
@@ -19,7 +20,9 @@ const MyTheme = {
 
 const App = () => {
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer
+      theme={MyTheme}
+      onReady={() => RNBootSplash.hide({ fade: true })}>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
