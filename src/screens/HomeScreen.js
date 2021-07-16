@@ -5,7 +5,9 @@ import CatCard from '../components/CatCard';
 
 import { data } from '../assets/data';
 
-const contains = ({ name, breed, description }, query) => {
+const contains = ({ name, breed, description }, text) => {
+  const query = text.toLowerCase();
+
   if (
     name.toLowerCase().includes(query) ||
     breed.toLowerCase().includes(query) ||
