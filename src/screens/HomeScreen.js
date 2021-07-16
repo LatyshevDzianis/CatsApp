@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, StyleSheet, FlatList, TextInput } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 import CatCard from '../components/CatCard';
 
@@ -20,6 +21,8 @@ const contains = ({ name, breed, description }, text) => {
 
 const HomeScreen = ({ navigation }) => {
   const [cats, setCats] = useState(data);
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   const onCardPress = item => {
     navigation.push('CatDetails', {
@@ -55,19 +58,25 @@ const HomeScreen = ({ navigation }) => {
         placeholder="Type here to search..."
         onChangeText={handleChangeText}
         clearButtonMode="always"
+        style={styles.input}
+        placeholderTextColor={theme.colors.black}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  cardContainer: {
-    marginVertical: 10,
-    marginHorizontal: 20,
-  },
-});
+const createStyles = theme =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    cardContainer: {
+      marginVertical: 10,
+      marginHorizontal: 20,
+    },
+    input: {
+      color: theme.colors.black,
+    },
+  });
 
 export default HomeScreen;

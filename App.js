@@ -15,6 +15,7 @@ const MyTheme = {
     background: '#f5f6fa',
     almostBlue: '#487eb0',
     lightGrey: '#95a5a6',
+    black: '#000',
   },
 };
 
