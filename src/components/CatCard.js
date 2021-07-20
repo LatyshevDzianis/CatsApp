@@ -1,14 +1,17 @@
-import React, { useMemo } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import React, {useMemo} from 'react';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 
-const CatCard = ({ name, breed, imageUri, description, onPress }) => {
+const CatCard = ({name, breed, imageUri, description, onPress}) => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={onPress}
+      activeOpacity={0.7}>
       <View style={styles.headerSection}>
         <Text style={[styles.text, styles.boldText]}>{name}</Text>
         <Text style={styles.text}>{breed}</Text>

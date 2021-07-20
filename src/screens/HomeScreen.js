@@ -1,25 +1,19 @@
-import React, { useState, useMemo } from 'react';
-import { View, StyleSheet, FlatList, TextInput } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import React, {useState, useMemo} from 'react';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
 import CatCard from '../components/CatCard';
+import {contains} from '../helpers/helpers';
+import {data} from '../assets/data';
 
-import { data } from '../assets/data';
-
-const contains = ({ name, breed, description }, text) => {
-  const query = text.toLowerCase();
-
-  if (
-    name.toLowerCase().includes(query) ||
-    breed.toLowerCase().includes(query) ||
-    description.toLowerCase().includes(query)
-  ) {
-    return true;
-  }
-  return false;
-};
-
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({navigation}) => {
   const [cats, setCats] = useState(data);
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -36,10 +30,13 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      enabled
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      style={styles.container}>
       <FlatList
         data={cats}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <View style={styles.cardContainer}>
             <CatCard
               name={item.name}
@@ -50,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
             />
           </View>
         )}
-        keyExtractor={({ id }) => id}
+        keyExtractor={({id}) => id}
         extraData={cats}
       />
       <TextInput
@@ -61,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
         style={styles.input}
         placeholderTextColor={theme.colors.black}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

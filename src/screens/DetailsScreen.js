@@ -1,13 +1,13 @@
-import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import React, {useMemo} from 'react';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
+
+import {makeFirstLetterUpper} from '../helpers/helpers';
 
 const catsDescriptionItems = ['breed', 'age', 'description'];
 
-const makeFirstLetterUpper = str => str.charAt(0).toUpperCase() + str.slice(1);
-
-const DetailsScreen = ({ route }) => {
+const DetailsScreen = ({route}) => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
@@ -22,7 +22,7 @@ const DetailsScreen = ({ route }) => {
             uri: cat.imageUri,
             priority: FastImage.priority.normal,
           }}
-          resizeMode={FastImage.resizeMode.cover}
+          resizeMode={FastImage.resizeMode.contain}
         />
       </View>
       <View style={styles.infoContainer}>
