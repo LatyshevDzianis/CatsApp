@@ -61,7 +61,7 @@ const createStyles = theme =>
       padding: 15,
     },
     image: {
-      width: '90%',
+      width: '100%',
       height: 150,
     },
   });

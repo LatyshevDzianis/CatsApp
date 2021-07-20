@@ -4,6 +4,7 @@ import {useTheme} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 
 import {makeFirstLetterUpper} from '../helpers/helpers';
+import Container from '../Container';
 
 const catsDescriptionItems = ['breed', 'age', 'description'];
 
@@ -14,35 +15,36 @@ const DetailsScreen = ({route}) => {
   const cat = route.params.cat;
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.imageContainer}>
-        <FastImage
-          style={styles.image}
-          source={{
-            uri: cat.imageUri,
-            priority: FastImage.priority.normal,
-          }}
-          resizeMode={FastImage.resizeMode.contain}
-        />
-      </View>
-      <View style={styles.infoContainer}>
-        {catsDescriptionItems.map(descriptionItem => (
-          <View style={styles.descriptionSectionItem} key={descriptionItem}>
-            <Text style={[styles.text, styles.boldText]}>
-              {makeFirstLetterUpper(descriptionItem)}:
-            </Text>
-            <Text style={styles.text}>{cat[descriptionItem]}</Text>
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+    <Container>
+      <ScrollView style={styles.container}>
+        <View style={styles.imageContainer}>
+          <FastImage
+            style={styles.image}
+            source={{
+              uri: cat.imageUri,
+              priority: FastImage.priority.normal,
+            }}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </View>
+        <View style={styles.infoContainer}>
+          {catsDescriptionItems.map(descriptionItem => (
+            <View style={styles.descriptionSectionItem} key={descriptionItem}>
+              <Text style={[styles.text, styles.boldText]}>
+                {makeFirstLetterUpper(descriptionItem)}:
+              </Text>
+              <Text style={styles.text}>{cat[descriptionItem]}</Text>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </Container>
   );
 };
 
 const createStyles = theme =>
   StyleSheet.create({
     container: {
-      flex: 1,
       paddingHorizontal: 20,
       paddingVertical: 20,
     },
@@ -68,6 +70,7 @@ const createStyles = theme =>
     },
     boldText: {
       fontWeight: 'bold',
+      marginBottom: 5,
     },
   });
 
